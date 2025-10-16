@@ -1,0 +1,9 @@
+README.md
+setup.py
+pythva.egg-info/PKG-INFO
+pythva.egg-info/SOURCES.txt
+pythva.egg-info/dependency_links.txt
+pythva.egg-info/entry_points.txt
+pythva.egg-info/not-zip-safe
+pythva.egg-info/requires.txt
+pythva.egg-info/top_level.txt

@@ -1,0 +1,3 @@
+[console_scripts]
+pythva = pythva.cli:main
+pythva-web = pythva.web_demo:run_web_demo

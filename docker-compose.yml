@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  pythva:
+    build: .
+    container_name: pythva
+    volumes:
+      - ./examples:/app/examples
+      - ./config:/app/config
+      - pythva_cache:/app/cache
+    ports:
+      - "5000:5000"
+    environment:
+      - PYTHVA_CONFIG=/app/config/pythva.yaml
+    command: python -m pythva.web_demo --host 0.0.0.0 --port 5000
+    healthcheck:
+      test: ["CMD", "python", "-c", "from pythva.core import convert_python_to_java_style; print('OK')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # 仅命令行版本
+  pythva-cli:
+    build: .
+    container_name: pythva-cli
+    volumes:
+      - ./examples:/app/examples
+      - ./config:/app/config
+    environment:
+      - PYTHVA_CONFIG=/app/config/pythva.yaml
+    command: python -m pythva.cli --help
+    profiles:
+      - cli
+
+volumes:
+  pythva_cache:
+    driver: local
